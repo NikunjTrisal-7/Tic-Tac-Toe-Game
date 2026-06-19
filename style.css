@@ -1,0 +1,758 @@
+:root {
+  color-scheme: dark;
+  --bg: #111827;
+  --surface: #1f2937;
+  --surface-strong: #111827;
+  --accent: #6366f1;
+  --accent-strong: #4338ca;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --danger: #f87171;
+  --success: #34d399;
+  --border: rgba(148, 163, 184, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.25), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.18), transparent 18%),
+    var(--bg);
+  color: var(--text);
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+  min-height: 100vh;
+}
+
+.app-shell {
+  width: min(100%, 520px);
+  display: grid;
+  gap: 24px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 2.5vw, 2.5rem);
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.restart-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.restart-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.status-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.status-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.status-card span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.status-card strong {
+  font-size: 1.25rem;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 18px;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.cell:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.cell:disabled {
+  cursor: not-allowed;
+  color: rgba(248, 250, 252, 0.7);
+}
+
+.footer-note {
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.page {
+  width: min(100%, 760px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.app-shell {
+  width: min(100%, 900px);
+  display: grid;
+  gap: 24px;
+  padding-bottom: 24px;
+  max-height: calc(100vh - 32px);
+}
+
+body {
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.page {
+  width: min(100%, 900px);
+}
+
+#gamePage {
+  display: grid;
+  gap: 18px;
+  height: calc(100vh - 48px);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+
+#gamePage .game-info-grid,
+#gamePage .board,
+#gamePage .bot-voice-card,
+#gamePage .button-row {
+  width: 100%;
+}
+
+#gamePage .board {
+  margin-inline: auto;
+  max-width: 440px;
+}
+
+.game-header,
+.home-header {
+  align-items: center;
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 860px) {
+  .button-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-height: 760px) {
+  body {
+    padding: 12px;
+  }
+
+  .app-shell {
+    gap: 18px;
+  }
+
+  .app-title-row,
+  .brand-row,
+  .section-title-row {
+    gap: 12px;
+  }
+
+  .auth-card,
+  .section-card,
+  .playstore-card,
+  .player-card,
+  .status-panel.game-status-panel,
+  .opponent-card {
+    padding: 18px;
+  }
+
+  .board {
+    gap: 10px;
+  }
+
+  .cell {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .game-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .board {
+    max-width: 360px;
+    margin-inline: auto;
+  }
+
+  .bot-voice-card {
+    margin-top: 12px;
+  }
+}
+
+.auth-card,
+.section-card,
+.playstore-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 24px;
+  backdrop-filter: blur(18px);
+}
+
+.app-title-row,
+.brand-row,
+.section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: white;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.app-icon-small {
+  width: 48px;
+  height: 48px;
+}
+
+.btn {
+  border: none;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: white;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+}
+
+.btn-small {
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.input-group {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.input-group label {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 14px 16px;
+  font-size: 1rem;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.password-field-wrapper {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.password-hint {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.password-hint ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+
+.password-hint li {
+  margin-bottom: 4px;
+}
+
+.password-hint li.valid {
+  color: var(--success);
+}
+
+.password-hint li.invalid {
+  color: var(--muted);
+}
+.text-button {
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.home-header,
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+}
+
+.home-bot-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-bot-avatar {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.home-meta,
+.player-title,
+.status-label {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.playstore-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.2);
+  color: #e0e7ff;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.section-card h1,
+.section-card h3,
+.tutorial-step h3,
+.player-title,
+.player-name {
+  margin: 0;
+}
+
+.section-card h1,
+.game-header h1 {
+  margin-bottom: 10px;
+}
+
+.section-card p,
+.tutorial-step p,
+.player-country,
+.home-meta,
+.helper-text,
+.status-label {
+  color: var(--muted);
+}
+
+.tutorial-list {
+  display: grid;
+  gap: 16px;
+}
+
+.tutorial-step {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stats-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.wide-card {
+  grid-column: span 3;
+}
+
+.player-card,
+.opponent-card,
+.status-panel.game-status-panel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 18px;
+}
+
+.game-info-grid {
+  grid-template-columns: 1fr 1.3fr 1fr;
+}
+
+.player-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.timer-block {
+  margin-top: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+.timer-block span {
+  color: var(--muted);
+}
+
+.timer-block strong {
+  font-size: 1.6rem;
+}
+
+.helper-text {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 860px) {
+  .playstore-card,
+  .game-info-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-header,
+  .game-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 20px 12px;
+  }
+
+  .app-shell {
+    gap: 20px;
+  }
+
+  .app-title-row,
+  .brand-row,
+  .section-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .button-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.bot-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.bot-card:hover,
+.bot-card.selected {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.35);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.bot-card img,
+.bot-card-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.opponent-avatar {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin: 12px 0;
+}
+
+.selected-bot-preview {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  margin-bottom: 16px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.selected-bot-preview .bot-preview-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.selected-bot-preview .bot-preview-name {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.selected-bot-preview .bot-preview-rank {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.bot-card .bot-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.bot-card .bot-meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.bot-card .bot-rank {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.bot-voice-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  padding: 18px;
+  margin-top: 16px;
+}
+
+.bot-voice-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.bot-voice-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.bot-voice-card p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 50;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  position: relative;
+  width: min(100%, 420px);
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02), 0 25px 80px rgba(0, 0, 0, 0.35);
+  display: grid;
+  gap: 20px;
+}
+
+.modal-actions {
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 860px) {
+  .playstore-card,
+  .game-info-grid,
+  .stats-grid,
+  .bot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bot-card img {
+    height: 88px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-height: 760px) {
+  .bot-card img {
+    height: 80px;
+  }
+
+  .modal-content {
+    margin: 0 12px;
+  }
+}

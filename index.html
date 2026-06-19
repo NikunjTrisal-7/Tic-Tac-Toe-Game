@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe Arena</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <section id="loginPage" class="page hidden">
+      <div class="auth-card">
+        <div class="app-title-row">
+          <div class="app-icon">T3</div>
+          <div>
+            <h1>Welcome back</h1>
+            <p class="subtitle">Sign in to continue your Tic Tac Toe journey.</p>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="loginEmail">Email</label>
+          <input id="loginEmail" type="email" placeholder="your@email.com" />
+        </div>
+
+        <div class="input-group password-group">
+          <label for="loginPassword">Password</label>
+          <div class="password-field-wrapper">
+            <input id="loginPassword" type="password" placeholder="Enter password" />
+            <button id="loginPasswordToggle" type="button" class="password-toggle" aria-label="Show password">👁</button>
+          </div>
+        </div>
+
+        <button id="loginButton" class="btn btn-primary">Sign In</button>
+
+        <div class="auth-footer">
+          <p>New to Tic Tac Toe Arena?</p>
+          <button id="showSignupBtn" class="text-button">Create account</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="signupPage" class="page hidden">
+      <div class="auth-card">
+        <div class="app-title-row">
+          <div class="app-icon">T3</div>
+          <div>
+            <h1>Create account</h1>
+            <p class="subtitle">Join with your username and country.</p>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="signupName">Username</label>
+          <input id="signupName" type="text" placeholder="Enter your name" />
+        </div>
+
+        <div class="input-group">
+          <label for="signupEmail">Email</label>
+          <input id="signupEmail" type="email" placeholder="your@email.com" />
+        </div>
+
+        <div class="input-group password-group">
+          <label for="signupPassword">Password</label>
+          <div class="password-field-wrapper">
+            <input id="signupPassword" type="password" placeholder="Create password" />
+            <button id="signupPasswordToggle" type="button" class="password-toggle" aria-label="Show password">👁</button>
+          </div>
+          <div class="password-hint" id="passwordHint">
+            <p>Password must include:</p>
+            <ul>
+              <li id="hintLength">At least 8 characters</li>
+              <li id="hintUpper">Uppercase and lowercase letters</li>
+              <li id="hintNumber">A number</li>
+              <li id="hintSpecial">A special character</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="signupCountry">Country</label>
+          <input id="signupCountry" list="countryList" placeholder="Search or choose your country" autocomplete="off" />
+          <datalist id="countryList">
+            <option value="Afghanistan">
+            <option value="Albania">
+            <option value="Algeria">
+            <option value="Andorra">
+            <option value="Angola">
+            <option value="Antigua and Barbuda">
+            <option value="Argentina">
+            <option value="Armenia">
+            <option value="Australia">
+            <option value="Austria">
+            <option value="Azerbaijan">
+            <option value="Bahamas">
+            <option value="Bahrain">
+            <option value="Bangladesh">
+            <option value="Barbados">
+            <option value="Belarus">
+            <option value="Belgium">
+            <option value="Belize">
+            <option value="Benin">
+            <option value="Bhutan">
+            <option value="Bolivia">
+            <option value="Bosnia and Herzegovina">
+            <option value="Botswana">
+            <option value="Brazil">
+            <option value="Brunei">
+            <option value="Bulgaria">
+            <option value="Burkina Faso">
+            <option value="Burundi">
+            <option value="Cabo Verde">
+            <option value="Cambodia">
+            <option value="Cameroon">
+            <option value="Canada">
+            <option value="Central African Republic">
+            <option value="Chad">
+            <option value="Chile">
+            <option value="China">
+            <option value="Colombia">
+            <option value="Comoros">
+            <option value="Costa Rica">
+            <option value="Croatia">
+            <option value="Cuba">
+            <option value="Cyprus">
+            <option value="Czech Republic">
+            <option value="Democratic Republic of the Congo">
+            <option value="Denmark">
+            <option value="Djibouti">
+            <option value="Dominica">
+            <option value="Dominican Republic">
+            <option value="Ecuador">
+            <option value="Egypt">
+            <option value="El Salvador">
+            <option value="Equatorial Guinea">
+            <option value="Eritrea">
+            <option value="Estonia">
+            <option value="Eswatini">
+            <option value="Ethiopia">
+            <option value="Fiji">
+            <option value="Finland">
+            <option value="France">
+            <option value="Gabon">
+            <option value="Gambia">
+            <option value="Georgia">
+            <option value="Germany">
+            <option value="Ghana">
+            <option value="Greece">
+            <option value="Grenada">
+            <option value="Guatemala">
+            <option value="Guinea">
+            <option value="Guinea-Bissau">
+            <option value="Guyana">
+            <option value="Haiti">
+            <option value="Honduras">
+            <option value="Hungary">
+            <option value="Iceland">
+            <option value="India">
+            <option value="Indonesia">
+            <option value="Iran">
+            <option value="Iraq">
+            <option value="Ireland">
+            <option value="Israel">
+            <option value="Italy">
+            <option value="Jamaica">
+            <option value="Japan">
+            <option value="Jordan">
+            <option value="Kazakhstan">
+            <option value="Kenya">
+            <option value="Kiribati">
+            <option value="Kosovo">
+            <option value="Kuwait">
+            <option value="Kyrgyzstan">
+            <option value="Laos">
+            <option value="Latvia">
+            <option value="Lebanon">
+            <option value="Lesotho">
+            <option value="Liberia">
+            <option value="Libya">
+            <option value="Liechtenstein">
+            <option value="Lithuania">
+            <option value="Luxembourg">
+            <option value="Madagascar">
+            <option value="Malawi">
+            <option value="Malaysia">
+            <option value="Maldives">
+            <option value="Mali">
+            <option value="Malta">
+            <option value="Marshall Islands">
+            <option value="Mauritania">
+            <option value="Mauritius">
+            <option value="Mexico">
+            <option value="Micronesia">
+            <option value="Moldova">
+            <option value="Monaco">
+            <option value="Mongolia">
+            <option value="Montenegro">
+            <option value="Morocco">
+            <option value="Mozambique">
+            <option value="Myanmar">
+            <option value="Namibia">
+            <option value="Nauru">
+            <option value="Nepal">
+            <option value="Netherlands">
+            <option value="New Zealand">
+            <option value="Nicaragua">
+            <option value="Niger">
+            <option value="Nigeria">
+            <option value="North Korea">
+            <option value="North Macedonia">
+            <option value="Norway">
+            <option value="Oman">
+            <option value="Pakistan">
+            <option value="Palau">
+            <option value="Panama">
+            <option value="Papua New Guinea">
+            <option value="Paraguay">
+            <option value="Peru">
+            <option value="Philippines">
+            <option value="Poland">
+            <option value="Portugal">
+            <option value="Qatar">
+            <option value="Republic of the Congo">
+            <option value="Romania">
+            <option value="Russia">
+            <option value="Rwanda">
+            <option value="Saint Kitts and Nevis">
+            <option value="Saint Lucia">
+            <option value="Saint Vincent and the Grenadines">
+            <option value="Samoa">
+            <option value="San Marino">
+            <option value="Sao Tome and Principe">
+            <option value="Saudi Arabia">
+            <option value="Senegal">
+            <option value="Serbia">
+            <option value="Seychelles">
+            <option value="Sierra Leone">
+            <option value="Singapore">
+            <option value="Slovakia">
+            <option value="Slovenia">
+            <option value="Solomon Islands">
+            <option value="Somalia">
+            <option value="South Africa">
+            <option value="South Korea">
+            <option value="South Sudan">
+            <option value="Spain">
+            <option value="Sri Lanka">
+            <option value="Sudan">
+            <option value="Suriname">
+            <option value="Sweden">
+            <option value="Switzerland">
+            <option value="Syria">
+            <option value="Taiwan">
+            <option value="Tajikistan">
+            <option value="Tanzania">
+            <option value="Thailand">
+            <option value="Timor-Leste">
+            <option value="Togo">
+            <option value="Tonga">
+            <option value="Trinidad and Tobago">
+            <option value="Tunisia">
+            <option value="Turkey">
+            <option value="Turkmenistan">
+            <option value="Tuvalu">
+            <option value="Uganda">
+            <option value="Ukraine">
+            <option value="United Arab Emirates">
+            <option value="United Kingdom">
+            <option value="United States">
+            <option value="Uruguay">
+            <option value="Uzbekistan">
+            <option value="Vanuatu">
+            <option value="Vatican City">
+            <option value="Venezuela">
+            <option value="Vietnam">
+            <option value="Yemen">
+            <option value="Zambia">
+            <option value="Zimbabwe">
+          </datalist>
+        </div>
+
+        <button id="signupButton" class="btn btn-primary">Sign Up</button>
+
+        <div class="auth-footer">
+          <p>Already have an account?</p>
+          <button id="showLoginBtn" class="text-button">Sign in</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="homePage" class="page">
+      <header class="home-header">
+        <div>
+          <div class="brand-row">
+            <div class="app-icon app-icon-small">T3</div>
+            <div>
+              <h1>Tic Tac Toe Arena</h1>
+              <p class="subtitle">Match with friends or challenge the bot.</p>
+            </div>
+          </div>
+          <p class="home-meta">Signed in as <strong id="profileName">Player</strong> (<span id="profileCountry">USA</span>)</p>
+        </div>
+        <div class="home-bot-profile">
+          <img id="homeBotAvatar" class="home-bot-avatar" src="" alt="Selected bot avatar" />
+          <div>
+            <div class="bot-preview-name" id="homeBotName">Bot preview</div>
+            <div class="bot-preview-rank" id="homeBotRank">Select a bot to preview</div>
+          </div>
+        </div>
+        <button id="logoutButton" class="btn btn-outline">Logout</button>
+      </header>
+
+      <div class="playstore-card">
+        <div class="card-left">
+          <div class="badge">Game</div>
+          <h2>Tic Tac Toe Arena</h2>
+          <p>Fast-paced 3x3 classic with player matchmaking, timed rounds, and stats tracking.</p>
+          <div class="stats-row">
+            <span>4.8 ★</span>
+            <span>1M+ installs</span>
+          </div>
+        </div>
+        <div class="card-right">
+          <button class="btn btn-primary" id="showTutorialBtn">Tutorial</button>
+          <button class="btn btn-secondary" id="showStatsBtn">My Stats</button>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>Start a Match</h3>
+        <div class="input-group">
+          <label for="gameCodeInput">Game code</label>
+          <input id="gameCodeInput" type="tel" inputmode="numeric" pattern="\d{4}" placeholder="Enter a 4-digit code or generate one" maxlength="4" />
+        </div>
+        <div id="selectedBotPreview" class="selected-bot-preview">
+          <div class="bot-preview-label">Selected opponent</div>
+          <img id="selectedBotAvatar" class="bot-card-img" src="" alt="Selected bot avatar" />
+          <div class="bot-preview-name" id="selectedBotName">Choose a bot</div>
+          <div class="bot-preview-rank" id="selectedBotRank">Tap any bot to preview</div>
+        </div>
+        <div class="button-row">
+          <button id="joinGameBtn" class="btn btn-primary hidden">Join Game</button>
+          <button id="createCodeBtn" class="btn btn-secondary">Generate Code</button>
+        </div>
+        <button id="quickMatchBtn" class="btn btn-ghost">Play selected bot</button>
+        <p class="helper-text">Enter a code from a friend or generate a new 4-digit code for your game.</p>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title-row">
+          <h3>Choose your opponent</h3>
+          <span class="subtitle">2 Novice • 4 Intermediate • 2 Grandmaster</span>
+        </div>
+        <div class="bot-grid" id="botGrid"></div>
+        <p class="helper-text">Tap any bot to choose them before starting the match.</p>
+      </div>
+    </section>
+
+    <section id="gamePage" class="page hidden">
+      <header class="game-header">
+        <div>
+          <h1>Game Code: <span id="activeGameCode">----</span></h1>
+          <p id="gameModeLabel" class="subtitle">Mode: Player vs Bot</p>
+        </div>
+        <button id="leaveGameBtn" class="btn btn-outline">Leave</button>
+      </header>
+
+      <div class="game-info-grid">
+        <div class="player-card">
+          <div class="player-title">You</div>
+          <div class="player-name" id="playerNameDisplay">Player</div>
+          <div class="player-country" id="playerCountryDisplay">USA</div>
+          <div class="timer-block">
+            <span>Time left</span>
+            <strong id="playerTimer">60s</strong>
+          </div>
+        </div>
+
+        <div class="status-panel game-status-panel">
+          <div>
+            <span class="status-label">Turn</span>
+            <strong id="currentPlayer">X</strong>
+          </div>
+          <div>
+            <span class="status-label">Game</span>
+            <strong id="gameStatus">Waiting for move</strong>
+          </div>
+        </div>
+
+        <div class="player-card opponent-card">
+          <div class="player-title">Opponent</div>
+          <img id="opponentAvatar" class="opponent-avatar" src="" alt="Opponent avatar" />
+          <div class="player-name" id="opponentNameDisplay">Bot</div>
+          <div class="player-country" id="opponentCountryDisplay">AI</div>
+          <div class="timer-block">
+            <span>Time left</span>
+            <strong id="opponentTimer">60s</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="bot-voice-card hidden" id="botVoiceCard">
+        <div class="bot-voice-header">
+          <div>
+            <strong id="botVoiceName">Opponent</strong>
+            <span class="bot-voice-label">says</span>
+          </div>
+          <div class="voice-controls">
+            <button id="musicToggleBtn" class="btn btn-outline btn-small" type="button">Music Off</button>
+            <button id="botMuteBtn" class="btn btn-outline btn-small" type="button">Mute</button>
+          </div>
+        </div>
+        <p id="botVoiceText">The opponent is ready to play.</p>
+      </div>
+
+      <div class="board" id="board">
+        <button class="cell" data-index="0"></button>
+        <button class="cell" data-index="1"></button>
+        <button class="cell" data-index="2"></button>
+        <button class="cell" data-index="3"></button>
+        <button class="cell" data-index="4"></button>
+        <button class="cell" data-index="5"></button>
+        <button class="cell" data-index="6"></button>
+        <button class="cell" data-index="7"></button>
+        <button class="cell" data-index="8"></button>
+      </div>
+
+      <div class="button-row">
+        <button id="restartGameBtn" class="btn btn-primary">Restart Round</button>
+        <button id="backHomeBtn" class="btn btn-secondary">Back to Home</button>
+      </div>
+    </section>
+
+    <section id="tutorialPage" class="page hidden">
+      <div class="section-card">
+        <div class="section-title-row">
+          <h1>Tutorial</h1>
+          <button id="tutorialBackBtn" class="text-button">Back</button>
+        </div>
+        <p class="subtitle">Learn the rules and how matchmaking works.</p>
+        <div class="tutorial-list">
+          <div class="tutorial-step">
+            <h3>1. Sign Up / Login</h3>
+            <p>Create your profile with country details and track your stats.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3>2. Enter a Game Code</h3>
+            <p>Enter the same game code as a friend to play a real multiplayer match.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3>3. Play Against the Bot</h3>
+            <p>Unique or random codes start a bot match immediately.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3>4. Timed Moves</h3>
+            <p>Each player has a clock. If your timer reaches zero, you lose the game.</p>
+          </div>
+          <div class="tutorial-step">
+            <h3>5. Track Your Stats</h3>
+            <p>View wins, losses, streaks, and win percentage on the Stats page.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="statsPage" class="page hidden">
+      <div class="section-card">
+        <div class="section-title-row">
+          <h1>My Stats</h1>
+          <button id="statsBackBtn" class="text-button">Back</button>
+        </div>
+        <div class="stats-grid">
+          <div class="stats-card">
+            <span>Total games</span>
+            <strong id="totalGames">0</strong>
+          </div>
+          <div class="stats-card">
+            <span>Wins</span>
+            <strong id="totalWins">0</strong>
+          </div>
+          <div class="stats-card">
+            <span>Losses</span>
+            <strong id="totalLosses">0</strong>
+          </div>
+          <div class="stats-card">
+            <span>Draws</span>
+            <strong id="totalDraws">0</strong>
+          </div>
+          <div class="stats-card wide-card">
+            <span>Win %</span>
+            <strong id="winPercentage">0%</strong>
+          </div>
+          <div class="stats-card wide-card">
+            <span>Current streak</span>
+            <strong id="currentStreak">0</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="resultModal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <h2 id="resultModalTitle">Match result</h2>
+      <p id="resultModalMessage">You won the round.</p>
+      <div class="modal-actions">
+        <button id="modalPlayAgainBtn" class="btn btn-primary">Play again</button>
+        <button id="modalHomeBtn" class="btn btn-secondary">Home</button>
+        <button id="modalLogoutBtn" class="btn btn-outline">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
